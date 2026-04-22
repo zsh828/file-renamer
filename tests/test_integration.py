@@ -208,7 +208,7 @@ class TestCommandLineInterface:
         """Test that --help provides documentation."""
         result = subprocess.run(
             [sys.executable, "main.py", "--help"],
-            cwd="/home/zsh/projects/file-renamer",
+            cwd=str(Path(__file__).parent.parent),
             capture_output=True,
             text=True,
         )
@@ -221,7 +221,7 @@ class TestCommandLineInterface:
         """Test error when no arguments provided."""
         result = subprocess.run(
             [sys.executable, "main.py"],
-            cwd="/home/zsh/projects/file-renamer",
+            cwd=str(Path(__file__).parent.parent),
             capture_output=True,
             text=True,
         )
@@ -233,7 +233,7 @@ class TestCommandLineInterface:
         """Test error on nonexistent root directory."""
         result = subprocess.run(
             [sys.executable, "main.py", "--dry-run", "*.txt", "/nonexistent/path"],
-            cwd="/home/zsh/projects/file-renamer",
+            cwd=str(Path(__file__).parent.parent),
             capture_output=True,
             text=True,
         )
