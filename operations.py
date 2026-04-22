@@ -12,7 +12,7 @@ This module contains the core logic for renaming files with support for:
 import os
 from dataclasses import dataclass
 from pathlib import Path
-from typing import List, Tuple
+from typing import List, Tuple, Optional
 
 
 @dataclass
@@ -32,8 +32,8 @@ class RenameOperation:
     """
     prefix: str = ""
     suffix: str = ""
-    replace_old: str | None = None
-    replace_new: str | None = None
+    replace_old: Optional[str] = None
+    replace_new: Optional[str] = None
     add_number: bool = False
     start_number: int = 1
     num_digits: int = 3
@@ -51,7 +51,7 @@ def build_new_filename(
     original_name: str,
     extension: str,
     operation: RenameOperation,
-    index: int | None = None,
+    index: Optional[int] = None,
 ) -> str:
     """
     Build a new filename based on the specified operations.
@@ -98,7 +98,7 @@ def get_safe_destination(
     new_filename: str,
     operation: RenameOperation,
     verbose: bool = False,
-) -> tuple[Path, bool]:
+) -> Tuple[Path, bool]:
     """
     Get a safe destination path, checking for conflicts.
     

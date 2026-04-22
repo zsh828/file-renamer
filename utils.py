@@ -12,7 +12,7 @@ This module provides utility functions for:
 import fnmatch
 import os
 from pathlib import Path
-from typing import List, Set
+from typing import List, Set, Optional, Tuple
 
 
 def validate_pattern(pattern: str) -> bool:
@@ -252,7 +252,7 @@ def safe_rename_check(
     source: Path,
     destination: Path,
     force: bool = False,
-) -> tuple[bool, str | None]:
+) -> Tuple[bool, Optional[str]]:
     """
     Perform pre-rename safety checks.
     
@@ -287,7 +287,7 @@ def safe_rename_check(
     return True, None
 
 
-def validate_path_writable(path: Path) -> tuple[bool, str | None]:
+def validate_path_writable(path: Path) -> Tuple[bool, Optional[str]]:
     """
     Check if a path is writable.
     
